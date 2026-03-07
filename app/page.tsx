@@ -1,65 +1,81 @@
-import Image from "next/image";
+import { supabase } from '@/lib/supabaseClient';
 
-export default function Home() {
+async function getThemes() {
+  const { data, error } = await supabase.from('themes').select('*');
+  if (error) console.error(error);
+  return data || [];
+}
+
+export default async function Home() {
+  const themes = await getThemes();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-gray-100 flex flex-col">
+      {/* Header */}
+      <header className="sticky top-0 bg-white shadow-md p-4 flex justify-between items-center">
+        <h1 className="text-2xl font-bold text-black">ThemedRoadTrips</h1>
+        <nav>
+          <ul className="flex space-x-4">
+            <li><a href="/" className="text-blue-600 hover:underline">Home</a></li>
+            <li><a href="/themes" className="text-blue-600 hover:underline">Themes</a></li>
+            <li><a href="/tools" className="text-blue-600 hover:underline">Tools</a></li>
+            <li><a href="/blog" className="text-blue-600 hover:underline">Blog</a></li>
+            <li><a href="/about" className="text-blue-600 hover:underline">About</a></li>
+          </ul>
+        </nav>
+        <button className="bg-blue-600 text-white px-4 py-2 rounded">Start Planning</button>
+      </header>
+
+      {/* Hero */}
+      <section className="bg-blue-800 text-white p-16 text-center">
+        <h2 className="text-4xl font-bold mb-4">Road Trips for Your Obsession</h2>
+        <p className="text-xl mb-8">Themed U.S. driving routes with real cost calculators, vintage photos, historical data, and interactive tools.</p>
+        <button className="bg-white text-blue-800 px-6 py-3 rounded mr-4">Browse Themes</button>
+        <button className="bg-white text-blue-800 px-6 py-3 rounded">Try Cost Calculator</button>
+        <p className="mt-4 text-sm">Updated for 2026 gas prices • 100% free tools • Retro visuals you won’t find anywhere else</p>
+      </section>
+
+      {/* Themes Showcase */}
+      <section className="p-8">
+        <h3 className="text-3xl font-bold mb-6 text-center">Our Flagship Themes</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {themes.map((theme) => (
+            <div key={theme.id} className="bg-white p-4 rounded shadow">
+              <h4 className="text-xl font-bold">{theme.name}</h4>
+              <p>{theme.description}</p>
+              <a href={`/themes/${theme.slug}`} className="text-blue-600 hover:underline">See Routes</a>
+            </div>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Featured Tools */}
+      <section className="bg-gray-200 p-8">
+        <h3 className="text-3xl font-bold mb-6 text-center">Featured Tools</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white p-4 rounded shadow">2026 Road Trip Cost Calculator (Coming Soon)</div>
+          <div className="bg-white p-4 rounded shadow">Route 66 Centennial Timeline (Coming Soon)</div>
+          <div className="bg-white p-4 rounded shadow">Find Your Theme Quiz (Coming Soon)</div>
         </div>
-      </main>
+      </section>
+
+      {/* Latest Routes */}
+      <section className="p-8">
+        <h3 className="text-3xl font-bold mb-6 text-center">Latest Routes</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Placeholder for now — we'll add dynamic later */}
+          <div className="bg-white p-4 rounded shadow">Route 66 Centennial (Coming Soon)</div>
+          <div className="bg-white p-4 rounded shadow">Space Exploration USA (Coming Soon)</div>
+          <div className="bg-white p-4 rounded shadow">Baseball Pilgrimage (Coming Soon)</div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white p-4 text-center">
+        <p>Built with real data & retro love • © 2026 ThemedRoadTrips</p>
+        <input type="email" placeholder="Get new routes & updates" className="mt-2 px-4 py-2 rounded" />
+        <button className="bg-blue-600 text-white px-4 py-2 rounded ml-2">Subscribe</button>
+      </footer>
     </div>
   );
 }
