@@ -26,10 +26,10 @@ export default async function Home() {
         <button className="bg-blue-600 text-white px-4 py-2 rounded">Start Planning</button>
       </header>
 
-      {/* Hero */}
+{/* Hero */}
       <section className="bg-blue-800 text-white p-16 text-center">
-        <h2 className="text-4xl font-bold mb-4">Road Trips for Your Obsession</h2>
-        <p className="text-xl mb-8">Themed U.S. driving routes with real cost calculators, vintage photos, historical data, and interactive tools.</p>
+        <h2 className="text-4xl font-bold mb-4">Themed Road Trips</h2>
+        <p className="text-xl mb-8">Topical Getaways Across America</p>
         <button className="bg-white text-blue-800 px-6 py-3 rounded mr-4">Browse Themes</button>
         <button className="bg-white text-blue-800 px-6 py-3 rounded">Try Cost Calculator</button>
         <p className="mt-4 text-sm">Updated for 2026 gas prices • 100% free tools • Retro visuals you won’t find anywhere else</p>
