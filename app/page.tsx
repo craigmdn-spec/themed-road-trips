@@ -1,12 +1,17 @@
 import { supabase } from '@/lib/supabaseClient';
 
 async function getThemes() {
-  const { data: themes } = await supabase
-  .from('themes')
-  .select('*')
-  .order('sort_order', { ascending: true });
-  if (error) console.error(error);
-  return data || [];
+  const { data: themes, error } = await supabase
+    .from('themes')
+    .select('*')
+    .order('sort_order', { ascending: true });
+
+  if (error) {
+    console.error(error);
+    return [];
+  }
+
+  return themes || [];
 }
 
 export default async function Home() {
