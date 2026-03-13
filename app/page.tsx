@@ -1,7 +1,10 @@
 import { supabase } from '@/lib/supabaseClient';
 
 async function getThemes() {
-  const { data, error } = await supabase.from('themes').select('*');
+  const { data: themes } = await supabase
+  .from('themes')
+  .select('*')
+  .order('sort_order', { ascending: true });
   if (error) console.error(error);
   return data || [];
 }
