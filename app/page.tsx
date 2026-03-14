@@ -35,27 +35,26 @@ export default async function Home() {
       </header>
 
 {/* Hero */}
-      <section className="bg-blue-800 text-white p-16 text-center">
-        <h2 className="text-4xl font-bold mb-4">Themed Road Trips</h2>
-        <p className="text-xl mb-8">Topical Getaways Across America</p>
-        <button className="bg-white text-blue-800 px-6 py-3 rounded mr-4">Browse Themes</button>
-        <button className="bg-white text-blue-800 px-6 py-3 rounded">Try Cost Calculator</button>
-        <p className="mt-4 text-sm">Updated for 2026 gas prices • 100% free tools • Retro visuals you won’t find anywhere else</p>
-      </section>
-
-      {/* Themes Showcase */}
-      <section className="p-8">
-        <h3 className="text-3xl font-bold mb-6 text-center">Our Flagship Themes</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {themes.map((theme) => (
-            <div key={theme.id} className="bg-white p-4 rounded shadow">
-              <h4 className="text-xl font-bold">{theme.name}</h4>
-              <p>{theme.description}</p>
-              <a href={`/themes/${theme.slug}`} className="text-blue-600 hover:underline">See Routes</a>
-            </div>
-          ))}
-        </div>
-      </section>
+{/* Hero */}
+<section 
+  className="relative h-[65vh] md:h-[75vh] bg-cover bg-center flex items-center justify-center text-white overflow-hidden"
+  style={{ backgroundImage: `url('/hero.png')` }}
+>
+  {/* Dark overlay for perfect readability + retro postcard feel */}
+  <div className="absolute inset-0 bg-black/45"></div>
+  
+  <div className="relative z-10 text-center px-6 max-w-4xl">
+    <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">Themed Road Trips</h2>
+    <p className="text-2xl md:text-3xl mb-10">Topical Getaways Across America</p>
+    
+    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <button className="bg-white text-blue-800 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-100 transition">Browse Themes</button>
+      <button className="border-2 border-white text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white/10 transition">Try Cost Calculator</button>
+    </div>
+    
+    <p className="mt-8 text-sm opacity-90">Updated for 2026 gas prices • 100% free tools • Retro visuals you won’t find anywhere else</p>
+  </div>
+</section>
 
       {/* Featured Tools */}
       <section className="bg-gray-200 p-8">
