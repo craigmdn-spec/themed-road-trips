@@ -35,24 +35,26 @@ export default async function Home() {
       </header>
 
 {/* Hero */}
-{/* Hero */}
 <section 
-  className="relative h-[65vh] md:h-[75vh] bg-cover bg-center flex items-center justify-center text-white overflow-hidden"
+  className="relative h-[620px] md:h-[680px] bg-cover bg-center flex items-end justify-center pb-12 text-white overflow-hidden"
   style={{ backgroundImage: `url('/hero.png')` }}
 >
-  {/* Dark overlay for perfect readability + retro postcard feel */}
-  <div className="absolute inset-0 bg-black/45"></div>
+  {/* Subtle dark overlay so buttons are easy to read */}
+  <div className="absolute inset-0 bg-black/25"></div>
   
   <div className="relative z-10 text-center px-6 max-w-4xl">
-    <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">Themed Road Trips</h2>
-    <p className="text-2xl md:text-3xl mb-10">Topical Getaways Across America</p>
-    
     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-      <button className="bg-white text-blue-800 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-100 transition">Browse Themes</button>
-      <button className="border-2 border-white text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white/10 transition">Try Cost Calculator</button>
+      <button className="bg-white text-blue-800 px-9 py-4 rounded-xl text-lg font-semibold hover:bg-gray-100 transition-all">
+        Browse Themes
+      </button>
+      <button className="border-2 border-white text-white px-9 py-4 rounded-xl text-lg font-semibold hover:bg-white/10 transition-all">
+        Try Cost Calculator
+      </button>
     </div>
     
-    <p className="mt-8 text-sm opacity-90">Updated for 2026 gas prices • 100% free tools • Retro visuals you won’t find anywhere else</p>
+    <p className="mt-8 text-sm opacity-90">
+      Updated for 2026 gas prices • 100% free tools • Retro visuals you won’t find anywhere else
+    </p>
   </div>
 </section>
 
