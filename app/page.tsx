@@ -44,7 +44,7 @@ export default async function Home() {
         style={{ backgroundImage: `url('/hero.png')` }}
       >
         {/* Subtle overlay */}
-        <div className="absolute inset-0 bg-black/30"></div>
+        <div className="absolute inset-0 bg-black/5"></div>
         
         <div className="relative z-10 text-center px-6 max-w-4xl">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
