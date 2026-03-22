@@ -57,10 +57,7 @@ export default async function Home() {
         <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center text-[#3f2a1d]">Our Flagship Themes</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {themes.map((theme) => (
-            <div 
-              key={theme.id} 
-              className="paper-texture bg-[#f5ede4] border border-[#3f2a1d]/20 p-6 rounded-2xl shadow-md hover:shadow-lg transition"
-            >
+            <div key={theme.id} className="bg-[#f5ede4] border border-[#3f2a1d]/20 p-6 rounded-2xl shadow-md hover:shadow-lg transition">
               <h4 className="text-lg sm:text-xl font-bold text-[#3f2a1d]">{theme.name}</h4>
               <p className="text-sm sm:text-base mt-2 text-[#3f2a1d]/90">{theme.description}</p>
               <a href={`/themes/${theme.slug}`} className="inline-block mt-4 text-[#e07a5f] font-semibold hover:underline">See Routes →</a>
@@ -73,9 +70,9 @@ export default async function Home() {
       <section className="bg-[#f5ede4] p-4 sm:p-8 border-t border-[#3f2a1d]/10">
         <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center text-[#3f2a1d]">Featured Tools</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="paper-texture bg-white p-6 rounded-2xl shadow border border-[#3f2a1d]/10 text-sm sm:text-base">2026 Road Trip Cost Calculator (Coming Soon)</div>
-          <div className="paper-texture bg-white p-6 rounded-2xl shadow border border-[#3f2a1d]/10 text-sm sm:text-base">Route 66 Centennial Timeline (Coming Soon)</div>
-          <div className="paper-texture bg-white p-6 rounded-2xl shadow border border-[#3f2a1d]/10 text-sm sm:text-base">Find Your Theme Quiz (Coming Soon)</div>
+          <div className="bg-white p-6 rounded-2xl shadow text-sm sm:text-base border border-[#3f2a1d]/10">2026 Road Trip Cost Calculator (Coming Soon)</div>
+          <div className="bg-white p-6 rounded-2xl shadow text-sm sm:text-base border border-[#3f2a1d]/10">Route 66 Centennial Timeline (Coming Soon)</div>
+          <div className="bg-white p-6 rounded-2xl shadow text-sm sm:text-base border border-[#3f2a1d]/10">Find Your Theme Quiz (Coming Soon)</div>
         </div>
       </section>
 
@@ -83,9 +80,9 @@ export default async function Home() {
       <section className="p-4 sm:p-8">
         <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center text-[#3f2a1d]">Latest Routes</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="paper-texture bg-white p-6 rounded-2xl shadow border border-[#3f2a1d]/10 text-sm sm:text-base">Route 66 Centennial (Coming Soon)</div>
-          <div className="paper-texture bg-white p-6 rounded-2xl shadow border border-[#3f2a1d]/10 text-sm sm:text-base">Space Exploration USA (Coming Soon)</div>
-          <div className="paper-texture bg-white p-6 rounded-2xl shadow border border-[#3f2a1d]/10 text-sm sm:text-base">Baseball Pilgrimage (Coming Soon)</div>
+          <div className="bg-white p-6 rounded-2xl shadow text-sm sm:text-base border border-[#3f2a1d]/10">Route 66 Centennial (Coming Soon)</div>
+          <div className="bg-white p-6 rounded-2xl shadow text-sm sm:text-base border border-[#3f2a1d]/10">Space Exploration USA (Coming Soon)</div>
+          <div className="bg-white p-6 rounded-2xl shadow text-sm sm:text-base border border-[#3f2a1d]/10">Baseball Pilgrimage (Coming Soon)</div>
         </div>
       </section>
 
@@ -93,11 +90,7 @@ export default async function Home() {
       <footer className="bg-[#3f2a1d] text-[#f5ede4] p-6 text-center">
         <p className="text-sm sm:text-base">Built with real data & retro love • © 2026 ThemedRoadTrips</p>
         <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center items-center">
-          <input 
-            type="email" 
-            placeholder="Get new routes & updates" 
-            className="px-5 py-3 rounded-xl w-full sm:w-80 bg-white/10 text-white placeholder:text-[#f5ede4]/70" 
-          />
+          <input type="email" placeholder="Get new routes & updates" className="px-5 py-3 rounded-xl w-full sm:w-80 bg-white/10 text-white placeholder:text-[#f5ede4]/70" />
           <button className="bg-[#e07a5f] text-white px-8 py-3 rounded-xl font-semibold w-full sm:w-auto">Subscribe</button>
         </div>
       </footer>
