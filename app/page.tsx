@@ -1,3 +1,7 @@
+export const dynamic = 'force-dynamic';  // forces no caching, re-fetches every request
+// OR alternatively (lighter):
+//export const revalidate = 0;
+
 import { supabase } from '@/lib/supabaseClient';
 
 async function getThemes() {
