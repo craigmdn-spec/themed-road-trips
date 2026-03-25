@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   return {
     title: theme 
-      ? `${themes.name} | Themed Road Trips` 
+      ? `${theme.name} | Themed Road Trips` 
       : `Theme Not Found | Themed Road Trips`,
     description: theme?.description || theme?.tagline || 'Curated themed road trips across America',
   };
