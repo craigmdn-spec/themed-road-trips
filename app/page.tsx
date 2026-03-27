@@ -20,20 +20,17 @@ export default async function Home() {
   const themes = await getThemes();
   return (
     <div className="min-h-screen bg-[#f5ede4] flex flex-col">
-      {/* Header */}
-      <header className="sticky top-0 bg-[#f5ede4] shadow-md p-4 flex flex-wrap justify-between items-center gap-4 border-b border-[#3f2a1d]/10">
-        <h1 className="text-2xl font-bold text-[#3f2a1d]">ThemedRoadTrips</h1>
-        <nav className="flex-grow">
-          <ul className="flex flex-wrap space-x-4 sm:space-x-6 text-sm sm:text-base">
-            <li><a href="/" className="text-[#3f2a1d] hover:underline">Home</a></li>
-            <li><a href="/themes" className="text-[#3f2a1d] hover:underline">Themes</a></li>
-            <li><a href="/tools" className="text-[#3f2a1d] hover:underline">Tools</a></li>
-            <li><a href="/blog" className="text-[#3f2a1d] hover:underline">Blog</a></li>
-            <li><a href="/about" className="text-[#3f2a1d] hover:underline">About</a></li>
-          </ul>
-        </nav>
-        <button className="bg-[#e07a5f] text-white px-5 py-2 rounded-xl text-sm sm:text-base font-semibold">Start Planning</button>
-      </header>
+{/* Header */}
+<header className="sticky top-0 bg-[#f5ede4] shadow-md p-4 flex flex-wrap justify-between items-center gap-4 border-b border-[#3f2a1d]/10">
+  <h1 className="text-2xl font-bold text-[#3f2a1d]">ThemedRoadTrips</h1>
+  <nav className="flex-grow">
+    <ul className="flex flex-wrap space-x-4 sm:space-x-6 text-sm sm:text-base">
+      <li><a href="/" className="text-[#3f2a1d] hover:underline">Home</a></li>
+      <li><a href="/" className="text-[#3f2a1d] hover:underline">Themes</a></li>  {/* points to home for now */}
+    </ul>
+  </nav>
+  <button className="bg-[#e07a5f] text-white px-5 py-2 rounded-xl text-sm sm:text-base font-semibold">Start Planning</button>
+</header>
 
       {/* Hero - NO overlay */}
       <section 
