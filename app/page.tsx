@@ -1,6 +1,8 @@
 export const dynamic = 'force-dynamic';
 
 import { supabase } from '@/lib/supabaseClient';
+import { getLatestRoutes } from '@/lib/routes';
+import Link from 'next/link';
 
 async function getThemes() {
   const { data: themes, error } = await supabase
@@ -17,10 +19,10 @@ async function getThemes() {
 
 export default async function Home() {
   const themes = await getThemes();
+  const latest = getLatestRoutes(3);
 
   return (
     <div className="min-h-screen bg-[#f5ede4] flex flex-col">
-      {/* Header */}
       <header className="sticky top-0 bg-[#f5ede4] shadow-md p-4 flex flex-wrap justify-between items-center gap-4 border-b border-[#3f2a1d]/10">
         <h1 className="text-2xl font-bold text-[#3f2a1d]">ThemedRoadTrips</h1>
         <nav className="flex-grow">
@@ -29,19 +31,17 @@ export default async function Home() {
             <li><a href="/" className="text-[#3f2a1d] hover:underline">Themes</a></li>
           </ul>
         </nav>
-        {/* Removed "Start Planning" button - keeping it clean for inspiration focus */}
       </header>
 
-      {/* Hero - NO overlay */}
       <section
         className="relative min-h-[50vh] sm:h-[620px] md:h-[680px] bg-cover bg-center flex items-end justify-center pb-8 sm:pb-12 text-white overflow-hidden"
         style={{ backgroundImage: `url('/hero.png')` }}
       >
         <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-[#e07a5f] text-white px-8 sm:px-10 py-4 rounded-2xl text-base sm:text-lg font-semibold hover:bg-[#c2410c] transition-all">
+            <a href="#themes" className="bg-[#e07a5f] text-white px-8 sm:px-10 py-4 rounded-2xl text-base sm:text-lg font-semibold hover:bg-[#c2410c] transition-all">
               Browse Themes
-            </button>
+            </a>
           </div>
           
           <p className="mt-6 sm:mt-8 text-xs sm:text-sm opacity-90">
@@ -50,8 +50,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Themes Showcase */}
-      <section className="p-4 sm:p-8">
+      <section id="themes" className="p-4 sm:p-8">
         <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center text-[#3f2a1d]">
           Our Flagship Themes
         </h3>
@@ -74,7 +73,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Inspiration Starters */}
       <section className="bg-[#f5ede4] p-4 sm:p-8 border-t border-[#3f2a1d]/10">
         <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center text-[#3f2a1d]">
           Inspiration Starters
@@ -89,17 +87,26 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Latest Routes */}
       <section className="p-4 sm:p-8">
         <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center text-[#3f2a1d]">
           Latest Routes
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {latest.map((route) => (
+            <Link
+              key={route.slug}
+              href={`/themes/${route.themeSlug}/${route.slug}`}
+              className="bg-white p-6 rounded-2xl shadow text-sm sm:text-base border border-[#3f2a1d]/10 hover:shadow-lg transition block"
+            >
+              <h4 className="text-lg font-bold text-[#3f2a1d]">{route.title}</h4>
+              <p className="mt-2 text-[#3f2a1d]/80">
+                {route.start} to {route.end}. {route.days} days.
+              </p>
+              <span className="inline-block mt-3 text-[#e07a5f] font-semibold">Read the route →</span>
+            </Link>
+          ))}
           <div className="bg-white p-6 rounded-2xl shadow text-sm sm:text-base border border-[#3f2a1d]/10">
             Route 66 Centennial (Coming Soon)
-          </div>
-          <div className="bg-white p-6 rounded-2xl shadow text-sm sm:text-base border border-[#3f2a1d]/10">
-            Space Exploration USA (Coming Soon)
           </div>
           <div className="bg-white p-6 rounded-2xl shadow text-sm sm:text-base border border-[#3f2a1d]/10">
             Baseball Pilgrimage (Coming Soon)
@@ -107,7 +114,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-[#3f2a1d] text-[#f5ede4] p-6 text-center">
         <p className="text-sm sm:text-base">Built with real data & retro love • © 2026 ThemedRoadTrips</p>
         <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center items-center">
