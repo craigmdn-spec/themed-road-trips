@@ -37,7 +37,7 @@ export default async function ThemePage({ params }: { params: Promise<{ slug: st
 
   if (error || !theme) {
     return (
-      <div className="min-h-screen bg-[#f6d9ab] flex items-center justify-center p-8">
+      <div className="min-h-screen bg-[#f5d4a1] flex items-center justify-center p-8">
         <div className="text-center max-w-md">
           <h1 className="text-4xl font-bold text-[#3f2a1d] mb-4">Theme Not Found</h1>
           <p className="text-[#e07a5f]">Slug: {slug}</p>
@@ -48,8 +48,8 @@ export default async function ThemePage({ params }: { params: Promise<{ slug: st
   }
 
   return (
-    <div className="min-h-screen bg-[#f6d9ab] text-[#3f2a1d]">
-      <header className="sticky top-0 bg-[#f6d9ab] shadow-md p-4 flex flex-wrap justify-between items-center gap-4 border-b border-[#3f2a1d]/10">
+    <div className="min-h-screen bg-[#f5d4a1] text-[#3f2a1d]">
+      <header className="sticky top-0 bg-[#f5d4a1] shadow-md p-4 flex flex-wrap justify-between items-center gap-4 border-b border-[#3f2a1d]/10">
         <Link href="/" className="text-2xl font-bold text-[#3f2a1d]">ThemedRoadTrips</Link>
         <nav>
           <ul className="flex flex-wrap space-x-4 sm:space-x-6 text-sm sm:text-base">
