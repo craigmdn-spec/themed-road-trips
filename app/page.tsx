@@ -8,8 +8,8 @@ export default function Home() {
   const route = latest[0];
 
   return (
-    <div className="min-h-screen bg-[#f5ede4] flex flex-col text-[#3f2a1d]">
-      <header className="sticky top-0 z-10 bg-[#f5ede4] shadow-md p-4 flex flex-wrap justify-between items-center gap-4 border-b border-[#3f2a1d]/10">
+    <div className="min-h-screen bg-[#f6d9ab] flex flex-col text-[#3f2a1d]">
+      <header className="sticky top-0 z-10 bg-[#f6d9ab] p-4 flex flex-wrap justify-between items-center gap-4">
         <Link href="/" className="text-2xl font-bold text-[#3f2a1d]">ThemedRoadTrips</Link>
         <nav>
           <ul className="flex flex-wrap space-x-4 sm:space-x-6 text-sm sm:text-base">
@@ -18,7 +18,7 @@ export default function Home() {
         </nav>
       </header>
 
-      <section className="w-full bg-[#f5ede4]" aria-label="Themed Road Trips">
+      <section className="w-full bg-[#f6d9ab]" aria-label="Themed Road Trips">
         <img
           src="/hero.png"
           alt="A family in a vintage convertible on an open road, heading toward a distant Ferris wheel. Themed Road Trips. Topical getaways across America."
@@ -27,7 +27,7 @@ export default function Home() {
       </section>
 
       {route && (
-        <section className="w-full px-4 py-10 sm:px-8 sm:py-14">
+        <section className="w-full bg-[#f6d9ab] px-4 py-10 sm:px-8 sm:py-14">
           <div className="mx-auto max-w-5xl grid gap-8 md:grid-cols-2 md:gap-12 items-center">
             <img
               src="/spot-stacks.png"

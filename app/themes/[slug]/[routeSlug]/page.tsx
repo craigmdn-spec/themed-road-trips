@@ -62,8 +62,8 @@ export default async function RoutePage({
   const siblings = getRoutesByTheme(slug).filter((item) => item.slug !== route.slug);
 
   return (
-    <div className={`min-h-screen bg-[#f5ede4] text-[#3f2a1d] ${serif.className}`}>
-      <header className="sticky top-0 bg-[#f5ede4] p-4 flex flex-wrap justify-between items-center gap-4 border-b border-[#3f2a1d]/10">
+    <div className={`min-h-screen bg-[#f6d9ab] text-[#3f2a1d] ${serif.className}`}>
+      <header className="sticky top-0 bg-[#f6d9ab] p-4 flex flex-wrap justify-between items-center gap-4 border-b border-[#3f2a1d]/10">
         <Link href="/" className="text-2xl font-semibold text-[#3f2a1d]">ThemedRoadTrips</Link>
         <nav>
           <ul className="flex flex-wrap space-x-4 sm:space-x-6 text-sm sm:text-base">
