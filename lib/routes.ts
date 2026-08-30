@@ -10,6 +10,9 @@ export type RouteSection = {
   paragraphs: string[];
   practical?: string;
   image?: Photo;
+  alongTheWay?: AlongEntry[];
+  flourish?: string;
+  asideFlourish?: string;
 };
 
 export type AlongEntry = {
@@ -66,6 +69,22 @@ export const routes: Route[] = [
           "Walk the Hoover-Mason Trestle. It used to carry material into the plant. Now it carries us along the stoves and skip hoists, close enough to see the rust-red paint and the size of the thing. Plaques around campus name bridges and towers that were built with this steel.",
           "The National Museum of Industrial History is in the old Electric Repair Shop on the same site. It is a Smithsonian Affiliate with machines from the 1876 Centennial and plenty of iron and textile gear.",
           "Stay in the Lehigh Valley. Allentown is right next door. In the morning we drive to the coal towns.",
+        ],
+        flourish: `${img}/spot-furnace.png`,
+        asideFlourish: `${img}/spot-ladle.png`,
+        alongTheWay: [
+          {
+            title: "Historic Moravian Bethlehem",
+            paragraphs: [
+              "The steel plant is south of the river. North of it the town is 18th-century stone. The Moravians laid this settlement out in 1741. The church, the Sisters' House, and the burial ground called God's Acre sit close enough that we can walk from one to the next. In 2024 the district joined other Moravian church settlements on the UNESCO list. We can take the furnaces in the afternoon and still reach the older town before dark.",
+            ],
+          },
+          {
+            title: "Historic Hotel Bethlehem",
+            paragraphs: [
+              "The distinctive bed in town sits on Main Street, next to the Moravian buildings, on the site of Bethlehem's First House. Rooms look over the old settlement and, on a clear night, the star on the mountain. We have not stayed. We are noting it because it belongs to this street in a way a highway chain does not.",
+            ],
+          },
         ],
       },
       {
@@ -133,6 +152,15 @@ export const routes: Route[] = [
           "Next follow the river a short way to Homestead. The Pump House is on the old mill waterfront where the 1892 strike was fought. The Bost Building nearby was the strikers' headquarters in 1892. It is now the visitor center for the Rivers of Steel National Heritage Area.",
         ],
         practical: "Rivers of Steel runs guided tours from May through October. Book ahead.",
+        alongTheWay: [
+          {
+            title: "The Duquesne Incline",
+            paragraphs: [
+              "Pittsburgh's mill story is on the river. The view of that river is from a wooden cable car that has been climbing Mount Washington since 1877. The cars are original. Fares work like the bus. From the upper deck the city is a map: the Point, the bridges, the brown rivers that made the mills possible.",
+            ],
+            practical: "Open every day, 6:30 in the morning until 12:30 at night.",
+          },
+        ],
       },
       {
         heading: "Day 6 — Youngstown, Then the Lake Road",
@@ -165,34 +193,15 @@ export const routes: Route[] = [
           "We followed the work from Bethlehem to Cleveland. The stacks, the curve, the furnaces, the boat, and from here the same story keeps going toward Detroit and the big lake mills beyond.",
         ],
         practical: "In summer the decks are usually open Tuesday through Sunday.",
-      },
-    ],
-    alongTheWay: [
-      {
-        title: "Historic Moravian Bethlehem",
-        paragraphs: [
-          "The steel plant is south of the river. North of it the town is 18th-century stone. The Moravians laid this settlement out in 1741. The church, the Sisters' House, and the burial ground called God's Acre sit close enough that we can walk from one to the next. In 2024 the district joined other Moravian church settlements on the UNESCO list. We can take the furnaces in the afternoon and still reach the older town before dark.",
+        alongTheWay: [
+          {
+            title: "West Side Market",
+            paragraphs: [
+              "Cleveland's public market has been in the same brick hall at West 25th and Lorain since 1912. Meat, produce, baked goods, and a lot of standing around. If the Mather is boarding in the morning, this fills the other half of the day without getting back in the car.",
+            ],
+            practical: "Open Monday, Wednesday, Friday, and Saturday 8 to 5, Sunday 10 to 4. Closed Tuesday and Thursday.",
+          },
         ],
-      },
-      {
-        title: "Historic Hotel Bethlehem",
-        paragraphs: [
-          "The distinctive bed in town sits on Main Street, next to the Moravian buildings, on the site of Bethlehem's First House. Rooms look over the old settlement and, on a clear night, the star on the mountain. We have not stayed. We are noting it because it belongs to this street in a way a highway chain does not.",
-        ],
-      },
-      {
-        title: "The Duquesne Incline",
-        paragraphs: [
-          "Pittsburgh's mill story is on the river. The view of that river is from a wooden cable car that has been climbing Mount Washington since 1877. The cars are original. Fares work like the bus. From the upper deck the city is a map: the Point, the bridges, the brown rivers that made the mills possible.",
-        ],
-        practical: "Open every day, 6:30 in the morning until 12:30 at night.",
-      },
-      {
-        title: "West Side Market",
-        paragraphs: [
-          "Cleveland's public market has been in the same brick hall at West 25th and Lorain since 1912. Meat, produce, baked goods, and a lot of standing around. If the Mather is boarding in the morning, this fills the other half of the day without getting back in the car.",
-        ],
-        practical: "Open Monday, Wednesday, Friday, and Saturday 8 to 5, Sunday 10 to 4. Closed Tuesday and Thursday.",
       },
     ],
   },

@@ -1,8 +1,9 @@
-import { getRoute, getRoutesByTheme, type Photo } from '@/lib/routes';
+import { getRoute, getRoutesByTheme, type AlongEntry, type Photo, type RouteSection } from '@/lib/routes';
 import { supabase } from '@/lib/supabaseClient';
 import { Source_Serif_4 } from 'next/font/google';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { Fragment } from 'react';
 
 const serif = Source_Serif_4({
   subsets: ['latin'],
@@ -30,6 +31,100 @@ function Figure({ photo }: { photo: Photo }) {
         <span className="text-[#3f2a1d]/55">{photo.credit}</span>
       </figcaption>
     </figure>
+  );
+}
+
+function HouseRule({ orientation }: { orientation: 'h' | 'v' }) {
+  if (orientation === 'h') {
+    return (
+      /* eslint-disable-next-line @next/next/no-img-element */
+      <img
+        src="/house/rule-horizontal.png"
+        alt=""
+        className="block w-full max-h-16 object-contain my-8"
+      />
+    );
+  }
+  return (
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img
+      src="/house/rule-vertical.png"
+      alt=""
+      className="hidden md:block w-10 h-auto object-contain object-top justify-self-center pt-2"
+    />
+  );
+}
+
+function Aside({
+  entries,
+  flourish,
+}: {
+  entries: AlongEntry[];
+  flourish?: string;
+}) {
+  return (
+    <aside className="mt-12 md:mt-0 md:pl-2">
+      <img
+        src="/house/rule-horizontal.png"
+        alt=""
+        className="md:hidden block w-full max-h-14 object-contain mb-8"
+      />
+      {flourish && (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img src={flourish} alt="" className="mx-auto mb-5 w-28 h-auto" />
+      )}
+      <h2 className="text-lg font-semibold tracking-wide mb-5">Along the way</h2>
+      {entries.map((entry) => (
+        <div key={entry.title} className="mb-8">
+          <h3 className="text-base font-semibold mb-2">{entry.title}</h3>
+          {entry.paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 40)} className="text-[0.95rem] leading-relaxed mb-3">
+              {paragraph}
+            </p>
+          ))}
+          {entry.practical && (
+            <p className="italic text-[#3f2a1d]/80 text-sm">{entry.practical}</p>
+          )}
+        </div>
+      ))}
+    </aside>
+  );
+}
+
+function DaySection({ section }: { section: RouteSection }) {
+  const asides = section.alongTheWay ?? [];
+  const hasAside = asides.length > 0;
+
+  return (
+    <section className="mt-16 md:grid md:grid-cols-[minmax(0,1fr)_3.25rem_minmax(15rem,18rem)] md:gap-x-12 md:gap-y-4 items-start">
+      <div className="min-w-0 md:pr-6">
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-6">{section.heading}</h2>
+        {section.image && <Figure photo={section.image} />}
+        {section.paragraphs.map((paragraph, index) => (
+          <Fragment key={paragraph.slice(0, 48)}>
+            <p className="leading-relaxed mb-5">{paragraph}</p>
+            {index === 1 && section.flourish && (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img src={section.flourish} alt="" className="mx-auto my-8 w-40 h-auto" />
+            )}
+          </Fragment>
+        ))}
+        {section.practical && (
+          <p className="italic text-[#3f2a1d]/80 mt-5 mb-2">{section.practical}</p>
+        )}
+      </div>
+      {hasAside ? (
+        <>
+          <HouseRule orientation="v" />
+          <Aside entries={asides} flourish={section.asideFlourish} />
+        </>
+      ) : (
+        <>
+          <div className="hidden md:block" />
+          <div className="hidden md:block" />
+        </>
+      )}
+    </section>
   );
 }
 
@@ -63,7 +158,7 @@ export default async function RoutePage({
 
   return (
     <div className={`min-h-screen bg-[#f5d4a1] text-[#3f2a1d] ${serif.className}`}>
-      <header className="sticky top-0 bg-[#f5d4a1] p-4 flex flex-wrap justify-between items-center gap-4 border-b border-[#3f2a1d]/10">
+      <header className="sticky top-0 bg-[#f5d4a1] px-6 sm:px-10 py-4 flex flex-wrap justify-between items-center gap-4">
         <Link href="/" className="text-2xl font-semibold text-[#3f2a1d]">ThemedRoadTrips</Link>
         <nav>
           <ul className="flex flex-wrap space-x-4 sm:space-x-6 text-sm sm:text-base">
@@ -77,60 +172,35 @@ export default async function RoutePage({
         </nav>
       </header>
 
-      <article className="container mx-auto px-6 sm:px-8 py-12 max-w-2xl">
+      <article className="mx-auto max-w-6xl px-10 sm:px-14 lg:px-20 py-16">
         <p className="text-sm tracking-wide text-[#c2410c] mb-3">
           {theme?.name || 'Historic America'}
         </p>
-        <h1 className="text-4xl sm:text-5xl font-semibold mb-8 leading-tight">{route.title}</h1>
+        <h1 className="text-4xl sm:text-5xl font-semibold mb-5 leading-tight max-w-3xl">{route.title}</h1>
+        <p className="text-sm mb-2">
+          {route.start} to {route.end}. {route.days} days.
+        </p>
+        <HouseRule orientation="h" />
 
-        {route.introImage && <Figure photo={route.introImage} />}
-
-        <div className="text-sm mb-10 pb-6 border-b border-[#3f2a1d]/15">
-          <p>{route.start} to {route.end}. {route.days} days.</p>
-        </div>
+        {route.introImage && (
+          <div className="max-w-3xl">
+            <Figure photo={route.introImage} />
+          </div>
+        )}
 
         {route.lede.map((paragraph) => (
-          <p key={paragraph.slice(0, 40)} className="text-lg leading-relaxed mb-5">
+          <p key={paragraph.slice(0, 40)} className="text-lg leading-relaxed mb-5 max-w-3xl">
             {paragraph}
           </p>
         ))}
 
         {route.sections.map((section) => (
-          <section key={section.heading} className="mt-14">
-            <h2 className="text-2xl sm:text-3xl font-semibold mb-4">{section.heading}</h2>
-            {section.image && <Figure photo={section.image} />}
-            {section.paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 48)} className="leading-relaxed mb-4">
-                {paragraph}
-              </p>
-            ))}
-            {section.practical && (
-              <p className="italic text-[#3f2a1d]/80 mt-4 mb-2">{section.practical}</p>
-            )}
-          </section>
+          <DaySection key={section.heading} section={section} />
         ))}
 
-        {route.alongTheWay && route.alongTheWay.length > 0 && (
-          <section className="mt-16 pt-10 border-t border-[#3f2a1d]/20">
-            <h2 className="text-2xl sm:text-3xl font-semibold mb-6">Along the way</h2>
-            {route.alongTheWay.map((entry) => (
-              <div key={entry.title} className="mb-8">
-                <h3 className="text-xl font-semibold mb-2">{entry.title}</h3>
-                {entry.paragraphs.map((paragraph) => (
-                  <p key={paragraph.slice(0, 40)} className="leading-relaxed mb-3">
-                    {paragraph}
-                  </p>
-                ))}
-                {entry.practical && (
-                  <p className="italic text-[#3f2a1d]/80">{entry.practical}</p>
-                )}
-              </div>
-            ))}
-          </section>
-        )}
-
         {siblings.length > 0 && (
-          <div className="mt-16 pt-8 border-t border-[#3f2a1d]/15">
+          <div className="mt-20 max-w-3xl">
+            <HouseRule orientation="h" />
             <h2 className="text-xl font-semibold mb-3">More in this theme</h2>
             <ul className="space-y-2">
               {siblings.map((item) => (
