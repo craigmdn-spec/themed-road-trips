@@ -28,7 +28,10 @@ export default function Home() {
 
       {route && (
         <section className="w-full bg-[#f5d4a1] px-4 py-10 sm:px-8 sm:py-14">
-          <div className="mx-auto max-w-5xl grid gap-8 md:grid-cols-2 md:gap-12 items-center">
+          <Link
+            href={`/themes/${route.themeSlug}/${route.slug}`}
+            className="group mx-auto max-w-5xl grid gap-8 md:grid-cols-2 md:gap-12 items-center"
+          >
             <img
               src="/spot-stacks.png"
               alt="Screen-print of five blast furnaces in a row"
@@ -36,21 +39,18 @@ export default function Home() {
             />
             <div>
               <p className="text-xs sm:text-sm uppercase tracking-wide text-[#3f2a1d]/70">Latest route</p>
-              <h2 className="mt-2 text-2xl sm:text-4xl font-bold">{route.title}</h2>
+              <h2 className="mt-2 text-2xl sm:text-4xl font-bold group-hover:underline">{route.title}</h2>
               <p className="mt-3 text-base sm:text-lg">
                 {route.start} to {route.end}. {route.days} days.
               </p>
               <p className="mt-4 text-base sm:text-lg leading-relaxed">
                 {route.lede[1]}
               </p>
-              <Link
-                href={`/themes/${route.themeSlug}/${route.slug}`}
-                className="inline-block mt-6 font-semibold text-[#c2410c] hover:underline"
-              >
+              <span className="inline-block mt-6 font-semibold text-[#c2410c] group-hover:underline">
                 Read the route
-              </Link>
+              </span>
             </div>
-          </div>
+          </Link>
         </section>
       )}
 
