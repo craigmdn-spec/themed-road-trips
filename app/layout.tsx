@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Themed Road Trips",
     description: "Topical Getaways Across America",
-    images: [{ url: "/hero-postcard.png" }], // update if your hero image has a different filename
+    images: [{ url: "/hero.png" }],
   },
 };
 

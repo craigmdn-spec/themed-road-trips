@@ -28,26 +28,17 @@ export default async function Home() {
         <nav className="flex-grow">
           <ul className="flex flex-wrap space-x-4 sm:space-x-6 text-sm sm:text-base">
             <li><a href="/" className="text-[#3f2a1d] hover:underline">Home</a></li>
-            <li><a href="/" className="text-[#3f2a1d] hover:underline">Themes</a></li>
+            <li><a href="/#themes" className="text-[#3f2a1d] hover:underline">Themes</a></li>
           </ul>
         </nav>
       </header>
 
-      <section
-        className="relative min-h-[50vh] sm:h-[620px] md:h-[680px] bg-cover bg-center flex items-end justify-center pb-8 sm:pb-12 text-white overflow-hidden"
-        style={{ backgroundImage: `url('/hero.png')` }}
-      >
-        <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl">
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#themes" className="bg-[#e07a5f] text-white px-8 sm:px-10 py-4 rounded-2xl text-base sm:text-lg font-semibold hover:bg-[#c2410c] transition-all">
-              Browse Themes
-            </a>
-          </div>
-          
-          <p className="mt-6 sm:mt-8 text-xs sm:text-sm opacity-90">
-            Boutique trip ideas from weekend jaunts to weeks-long adventures
-          </p>
-        </div>
+      <section className="w-full bg-[#f5ede4]" aria-label="Themed Road Trips">
+        <img
+          src="/hero.png"
+          alt="A family in a vintage convertible on an open road, heading toward a distant Ferris wheel. Themed Road Trips. Topical getaways across America."
+          className="block w-full h-auto max-w-full"
+        />
       </section>
 
       <section id="themes" className="p-4 sm:p-8">
