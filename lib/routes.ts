@@ -45,7 +45,6 @@ export const routes: Route[] = [
     end: "Cleveland, Ohio",
     days: 7,
     lede: [
-      "Bethlehem, Pennsylvania, to Cleveland, Ohio. Seven days.",
       "We start under the Bethlehem furnaces and follow the work west: coal, the railroad over the mountains, the river mills, then the lake that brought the ore. The people who built this stretch of the country left a lot still standing. We're going to see all of it.",
     ],
     introImage: {

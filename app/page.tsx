@@ -44,7 +44,7 @@ export default function Home() {
                 {route.start} to {route.end}. {route.days} days.
               </p>
               <p className="mt-4 text-base sm:text-lg leading-relaxed">
-                {route.lede[1]}
+                {route.lede[0]}
               </p>
               <span className="inline-block mt-6 font-semibold text-[#c2410c] group-hover:underline">
                 Read the route

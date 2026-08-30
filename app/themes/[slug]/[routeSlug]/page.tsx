@@ -173,26 +173,24 @@ export default async function RoutePage({
       </header>
 
       <article className="mx-auto max-w-6xl px-10 sm:px-14 lg:px-20 py-16">
-        <p className="text-sm tracking-wide text-[#c2410c] mb-3">
-          {theme?.name || 'Historic America'}
-        </p>
-        <h1 className="text-4xl sm:text-5xl font-semibold mb-5 leading-tight max-w-3xl">{route.title}</h1>
-        <p className="text-sm mb-2">
-          {route.start} to {route.end}. {route.days} days.
-        </p>
-        <HouseRule orientation="h" />
-
-        {route.introImage && (
-          <div className="max-w-3xl">
-            <Figure photo={route.introImage} />
-          </div>
-        )}
-
-        {route.lede.map((paragraph) => (
-          <p key={paragraph.slice(0, 40)} className="text-lg leading-relaxed mb-5 max-w-3xl">
-            {paragraph}
+        <div className="max-w-3xl">
+          <p className="text-sm tracking-wide text-[#c2410c] mb-3">
+            {theme?.name || 'Historic America'}
           </p>
-        ))}
+          <h1 className="text-4xl sm:text-5xl font-semibold mb-5 leading-tight">{route.title}</h1>
+          <p className="text-sm mb-2">
+            {route.start} to {route.end}. {route.days} days.
+          </p>
+          <HouseRule orientation="h" />
+
+          {route.introImage && <Figure photo={route.introImage} />}
+
+          {route.lede.map((paragraph) => (
+            <p key={paragraph.slice(0, 40)} className="text-lg leading-relaxed mb-5">
+              {paragraph}
+            </p>
+          ))}
+        </div>
 
         {route.sections.map((section) => (
           <DaySection key={section.heading} section={section} />
