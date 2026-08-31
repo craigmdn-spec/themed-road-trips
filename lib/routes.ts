@@ -15,10 +15,22 @@ export type RouteSection = {
   asideFlourish?: string;
 };
 
+export type AsideKind =
+  | "along"
+  | "eat"
+  | "sleep"
+  | "visitor"
+  | "explainer"
+  | "people"
+  | "books"
+  | "music"
+  | "movie";
+
 export type AlongEntry = {
-  title: string;
+  kind: AsideKind;
+  title?: string;
   paragraphs: string[];
-  practical?: string;
+  practical?: string; // italic hours; used on Go cards (along/eat/sleep)
 };
 
 export type Route = {
@@ -73,12 +85,21 @@ export const routes: Route[] = [
         asideFlourish: `${img}/spot-ladle.png`,
         alongTheWay: [
           {
-            title: "Historic Moravian Bethlehem",
+            kind: "visitor",
             paragraphs: [
-              "The steel plant is south of the river. North of it the town is 18th-century stone. The Moravians laid this settlement out in 1741. The church, the Sisters' House, and the burial ground called God's Acre sit close enough that we can walk from one to the next. In 2024 the district joined other Moravian church settlements on the UNESCO list. We can take the furnaces in the afternoon and still reach the older town before dark.",
+              "The Hoover-Mason Trestle is usually open Sunday through Wednesday 10 a.m. to 8 p.m., Thursday through Saturday 10 a.m. to 9 p.m. Weather and events can close it; ArtsQuest lists 610-332-1300. The National Museum of Industrial History is open Wednesday through Sunday 10 a.m. to 5 p.m.",
             ],
           },
           {
+            kind: "along",
+            title: "Historic Moravian Bethlehem",
+            paragraphs: [
+              "The steel plant is south of the river. North of it the town is 18th-century stone. The Moravians laid this settlement out in 1741. The church, the Sisters' House, and God's Acre sit close enough to walk from one to the next.",
+            ],
+            practical: "Colonial Industrial Quarter grounds are open dawn to dusk. Museum interiors are ticketed; hours change with the season.",
+          },
+          {
+            kind: "sleep",
             title: "Historic Hotel Bethlehem",
             paragraphs: [
               "The distinctive bed in town sits on Main Street, next to the Moravian buildings, on the site of Bethlehem's First House. Rooms look over the old settlement and, on a clear night, the star on the mountain. We have not stayed. We are noting it because it belongs to this street in a way a highway chain does not.",
@@ -102,7 +123,28 @@ export const routes: Route[] = [
           "Then we head west for three hours, past Hazleton and into the longer ridges of the Alleghenies. The coal country fades. After a while the land starts to feel like it belongs to the railroad. Altoona confirms it: brick shops, a lot of track, a town that grew because the Pennsylvania Railroad needed it.",
           "We stay the night. Tomorrow we see how they got the trains over the mountain.",
         ],
-        practical: "The grounds stay open most of the day. The museum desk is usually open Wednesday through Sunday. In summer some of the houses are open too.",
+        alongTheWay: [
+          {
+            kind: "visitor",
+            paragraphs: [
+              "The village street is free to walk or drive, dawn to dusk, every day. The museum desk is open Wednesday through Sunday, 10 a.m. to 4 p.m. Building interiors are in season through Labor Day; after that the street still stands and the houses are shut.",
+            ],
+          },
+          {
+            kind: "explainer",
+            title: "Breaker",
+            paragraphs: [
+              "A breaker is the tall mill at an anthracite colliery. It crushed coal into market sizes, shook out slate and rock, and loaded it for the railroad.",
+            ],
+          },
+          {
+            kind: "movie",
+            title: "The Molly Maguires (1970)",
+            paragraphs: [
+              "Martin Ritt shot the picture at Eckley in 1968, with Sean Connery and Richard Harris. Paramount built a two-thirds-scale breaker, then transferred the village to the Commonwealth for a dollar in 1970. That is why the town is still standing for a visit.",
+            ],
+          },
+        ],
       },
       {
         heading: "Day 3 — Altoona and the Curve",
@@ -119,7 +161,14 @@ export const routes: Route[] = [
           "Go to the overlook. Stand above the tracks and wait. A train comes through. People have been coming here to watch that since 1854, and it is still a pleasure.",
           "Overnight in Altoona. Johnstown is about an hour south.",
         ],
-        practical: "Museum hours change with the season, so look them up before you go. The visitor center and the little funicular at the Curve operate from spring into late fall.",
+        alongTheWay: [
+          {
+            kind: "visitor",
+            paragraphs: [
+              "Railroaders Memorial Museum and Horseshoe Curve do not post clock hours on the official site; they tell you to check before you go. The Curve's funicular is under maintenance. A UTV runs Wednesday through Friday; weekends are listed as standard operation. When the attraction is closed, the grounds are closed too.",
+            ],
+          },
+        ],
       },
       {
         heading: "Day 4 — Johnstown",
@@ -135,7 +184,22 @@ export const routes: Route[] = [
           "Afterward, drive up to the Inclined Plane. From the viewing area at the top we look down the tracks at the two rivers, the old street grid, and the entire valley.",
           "Pittsburgh is a little over an hour west. We make that drive in the afternoon so tomorrow's furnace tour is close by.",
         ],
-        practical: "The museum is closed on Tuesdays.",
+        alongTheWay: [
+          {
+            kind: "visitor",
+            paragraphs: [
+              "The Flood Museum, May through November: Monday and Wednesday through Saturday 10 a.m. to 5 p.m., Sunday noon to 5 p.m., closed Tuesday. Charles Guggenheim's 26-minute film The Johnstown Flood is shown hourly upstairs.",
+              "The Inclined Plane ride is closed for rehabilitation. The observation deck and the steps from Edgehill Drive are open.",
+            ],
+          },
+          {
+            kind: "books",
+            title: "David McCullough, The Johnstown Flood (1968)",
+            paragraphs: [
+              "His first book. It is the history of the dam, the private lake, and the mill town below it on 31 May 1889. Still in print.",
+            ],
+          },
+        ],
       },
       {
         heading: "Day 5 — Carrie Furnaces and Homestead",
@@ -150,14 +214,27 @@ export const routes: Route[] = [
           "The tour is mostly looking up. The hot-blast stoves are silent giants that once heated air to the temperature of molten lava before sending it into the furnaces. The steel shells have rusted to a dark, uneven red. These are prewar furnaces that never got cut down.",
           "Next follow the river a short way to Homestead. The Pump House is on the old mill waterfront where the 1892 strike was fought. The Bost Building nearby was the strikers' headquarters in 1892. It is now the visitor center for the Rivers of Steel National Heritage Area.",
         ],
-        practical: "Rivers of Steel runs guided tours from May through October. Book ahead.",
         alongTheWay: [
           {
+            kind: "visitor",
+            paragraphs: [
+              "Carrie Blast Furnaces: guided tours only, May through October, twenty people. Book ahead. The Bost Building is Monday through Friday, 11 a.m. to 4 p.m., free. Pump House grounds are open; 2026 interior hours were not posted.",
+            ],
+          },
+          {
+            kind: "people",
+            title: "Henry Clay Frick",
+            paragraphs: [
+              "He was Carnegie Steel's chairman on the ground in 1892. He locked the union out, fortified the mill, and hired three hundred Pinkertons whose barges landed at the Pump House on 6 July. Carnegie was in Scotland.",
+            ],
+          },
+          {
+            kind: "along",
             title: "The Duquesne Incline",
             paragraphs: [
-              "Pittsburgh's mill story is on the river. The view of that river is from a wooden cable car that has been climbing Mount Washington since 1877. The cars are original. Fares work like the bus. From the upper deck the city is a map: the Point, the bridges, the brown rivers that made the mills possible.",
+              "A wooden cable car has climbed Mount Washington since 1877. The cars are original. From the upper deck the city is a map: the Point, the bridges, the rivers that made the mills possible.",
             ],
-            practical: "Open every day, 6:30 in the morning until 12:30 at night.",
+            practical: "Open every day, 6:30 in the morning until 12:30 at night. No reservations.",
           },
         ],
       },
@@ -175,7 +252,21 @@ export const routes: Route[] = [
           "An hour and a quarter northwest, the hills ease off and reveal Cleveland on the shore of Lake Erie.",
           "Tomorrow we go aboard the ore boat.",
         ],
-        practical: "The museum is open Wednesday through Saturday, usually noon to four.",
+        alongTheWay: [
+          {
+            kind: "visitor",
+            paragraphs: [
+              "The Youngstown Historical Center of Industry and Labor is open Wednesday through Saturday, noon to 4 p.m. Closed Sundays, Mondays, Tuesdays, and Labor Day weekend.",
+            ],
+          },
+          {
+            kind: "music",
+            title: "Bruce Springsteen, Youngstown (1995)",
+            paragraphs: [
+              "On The Ghost of Tom Joad. The song is named for this city and follows the mills from the first ore through the shutdowns.",
+            ],
+          },
+        ],
       },
       {
         heading: "Day 7 — The Boat in Cleveland",
@@ -191,14 +282,27 @@ export const routes: Route[] = [
           "From the boat, head into the Flats along the Cuyahoga. This is the old industrial riverfront: lift bridges, bulkheads, and a working waterway that still shows how ore and steel moved through the city.",
           "We followed the work from Bethlehem to Cleveland. The stacks, the curve, the furnaces, the boat, and from here the same story keeps going toward Detroit and the big lake mills beyond.",
         ],
-        practical: "In summer the decks are usually open Tuesday through Sunday.",
         alongTheWay: [
           {
+            kind: "visitor",
+            paragraphs: [
+              "Summer, June through August: Tuesday through Sunday 11 a.m. to 5 p.m., closed Monday. The planning page lists her closed September through April. Some May, September, and October weekends appear on the ticket site. Confirm before you go.",
+            ],
+          },
+          {
+            kind: "people",
+            title: "William Gwinn Mather",
+            paragraphs: [
+              "He was president of Cleveland-Cliffs from 1890 to 1933. The 1925 freighter was built as the company's flagship and named for him.",
+            ],
+          },
+          {
+            kind: "eat",
             title: "West Side Market",
             paragraphs: [
               "Cleveland's public market has been in the same brick hall at West 25th and Lorain since 1912. Meat, produce, baked goods, and a lot of standing around. If the Mather is boarding in the morning, this fills the other half of the day without getting back in the car.",
             ],
-            practical: "Open Monday, Wednesday, Friday, and Saturday 8 to 5, Sunday 10 to 4. Closed Tuesday and Thursday.",
+            practical: "Open Monday, Wednesday, Friday, and Saturday 8 to 5, Sunday 10 to 4. Closed Tuesday and Thursday. Closed Labor Day (7 Sep 2026) and Wednesday 9 Sep 2026 for construction.",
           },
         ],
       },

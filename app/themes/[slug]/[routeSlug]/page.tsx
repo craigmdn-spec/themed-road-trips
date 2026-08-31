@@ -1,4 +1,4 @@
-import { getRoute, getRoutesByTheme, type AlongEntry, type Photo, type RouteSection } from '@/lib/routes';
+import { getRoute, getRoutesByTheme, type AlongEntry, type AsideKind, type Photo, type RouteSection } from '@/lib/routes';
 import { supabase } from '@/lib/supabaseClient';
 import { Source_Serif_4 } from 'next/font/google';
 import Link from 'next/link';
@@ -11,6 +11,18 @@ const serif = Source_Serif_4({
 });
 
 export const dynamic = 'force-dynamic';
+
+const ASIDE_META: Record<AsideKind, { label: string; ink: string }> = {
+  along: { label: 'Along the way', ink: '#5b7e6d' },
+  eat: { label: 'Eat', ink: '#5b7e6d' },
+  sleep: { label: 'Sleep', ink: '#5b7e6d' },
+  visitor: { label: 'Visitor info', ink: '#e0692a' },
+  explainer: { label: 'Explainer', ink: '#e0692a' },
+  people: { label: 'People', ink: '#e0692a' },
+  books: { label: 'Books', ink: '#3f2a1d' },
+  music: { label: 'Music', ink: '#3f2a1d' },
+  movie: { label: 'Movie', ink: '#3f2a1d' },
+};
 
 async function getThemeName(slug: string) {
   const { data } = await supabase
@@ -73,20 +85,45 @@ function Aside({
         /* eslint-disable-next-line @next/next/no-img-element */
         <img src={flourish} alt="" className="mx-auto mb-5 w-28 h-auto" />
       )}
-      <h2 className="text-lg font-semibold tracking-wide mb-5">Along the way</h2>
-      {entries.map((entry) => (
-        <div key={entry.title} className="mb-8">
-          <h3 className="text-base font-semibold mb-2">{entry.title}</h3>
-          {entry.paragraphs.map((paragraph) => (
-            <p key={paragraph.slice(0, 40)} className="text-[0.95rem] leading-relaxed mb-3">
-              {paragraph}
-            </p>
-          ))}
-          {entry.practical && (
-            <p className="italic text-[#3f2a1d]/80 text-sm">{entry.practical}</p>
-          )}
-        </div>
-      ))}
+      {entries.map((entry, index) => {
+        const meta = ASIDE_META[entry.kind];
+        return (
+          <div
+            key={`${entry.kind}-${index}`}
+            className="mb-5 px-3 py-3"
+            style={{
+              backgroundColor: `color-mix(in srgb, ${meta.ink} 15%, #f5d4a1)`,
+              boxShadow: `inset 2px 0 0 ${meta.ink}`,
+            }}
+          >
+            <div className="flex items-center gap-2.5 mb-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`/house/stamps/${entry.kind}.png`}
+                alt=""
+                className="w-11 h-11 shrink-0"
+              />
+              <p
+                className="text-[0.7rem] tracking-[0.16em] uppercase font-semibold"
+                style={{ color: meta.ink }}
+              >
+                {meta.label}
+              </p>
+            </div>
+            {entry.title && (
+              <h3 className="text-base font-semibold mb-2">{entry.title}</h3>
+            )}
+            {entry.paragraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 40)} className="text-[0.95rem] leading-relaxed mb-3 last:mb-0">
+                {paragraph}
+              </p>
+            ))}
+            {entry.practical && (
+              <p className="italic text-[#3f2a1d]/80 text-sm mt-2">{entry.practical}</p>
+            )}
+          </div>
+        );
+      })}
     </aside>
   );
 }
