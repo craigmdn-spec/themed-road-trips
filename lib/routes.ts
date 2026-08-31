@@ -222,11 +222,12 @@ export const routes: Route[] = [
             ],
           },
           {
-            kind: "people",
-            title: "Henry Clay Frick",
+            kind: "eat",
+            title: "Primanti Bros.",
             paragraphs: [
-              "He was Carnegie Steel's chairman on the ground in 1892. He locked the union out, fortified the mill, and hired three hundred Pinkertons whose barges landed at the Pump House on 6 July. Carnegie was in Scotland.",
+              "Joe Primanti opened a sandwich cart in the Strip in 1933, then a shop at 18th and Smallman for the produce drivers who worked the warehouses on the Allegheny. The sandwich is meat, cheese, tomato, coleslaw, and fries on Italian bread, so a driver could eat with one hand. The original shop is still at 46 18th Street.",
             ],
+            practical: "Open Sunday through Thursday 8 a.m. to midnight, Friday and Saturday 8 a.m. to 2 a.m.",
           },
           {
             kind: "along",
@@ -235,6 +236,13 @@ export const routes: Route[] = [
               "A wooden cable car has climbed Mount Washington since 1877. The cars are original. From the upper deck the city is a map: the Point, the bridges, the rivers that made the mills possible.",
             ],
             practical: "Open every day, 6:30 in the morning until 12:30 at night. No reservations.",
+          },
+          {
+            kind: "people",
+            title: "Henry Clay Frick",
+            paragraphs: [
+              "He was Carnegie Steel's chairman on the ground in 1892. He locked the union out, fortified the mill, and hired three hundred Pinkertons whose barges landed at the Pump House on 6 July. Carnegie was in Scotland.",
+            ],
           },
         ],
       },
